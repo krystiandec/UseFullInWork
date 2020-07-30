@@ -4,7 +4,9 @@ import Services.fileService.FileSaveImpl;
 
 public class Temp {
     public static void main(String[] args) {
-        String[] linie = {"Pierwsza linia tekstu do zapisania", "druga linia - kilka liczb: 12, 23, 44", "trzecia linia"};
+        String[] linie = {"419171003C2,419170200,02Y0039,419380400,419380200,419540000,419380300,419380100,419170100",
+                "419171032C2,419170001C1",
+                "419171104,419170200,419380400,419540000,419170100"};
         FileSaveImpl fileSave = new FileSaveImpl();
         try {
             fileSave.saveInFile("D:\\Praca\\Bierzace\\KZ\\20200520 - Karta zmian td20_td25_td40\\TXT",
