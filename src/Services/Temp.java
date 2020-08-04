@@ -1,53 +1,52 @@
 package Services;
 
-import Services.fileService.FileSaveImpl;
-import Services.fileService.ReadDataFromFile;
+import Services.fileService.WriteToFile;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Scanner;
+import java.util.*;
 
 public class Temp {
     public static void main(String[] args) {
         String[] linie = {"419171003C2,419170200,02Y0039,419380400,419380200,419540000,419380300,419380100,419170100",
                 "419171032C2,419170001C1",
                 "419171104,419170200,419380400,419540000,419170100"};
-/*        FileSaveImpl fileSave = new FileSaveImpl();
-        try {
-            fileSave.saveInFile("D:\\Java\\Projekty\\UseFullInWork\\src",
-                    "Numery", linie);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Niepoprawna ścieżka !!");
-        }*/
+        Map<String, Set<String>> map2 = new HashMap<>();
+        for (String str:linie) {
+            int pointerPosition = str.indexOf(',');
 
-        /*ReadDataFromFile reader = new ReadDataFromFile();
-        try {
-            System.out.println(reader.readValuersFromFile("202007291353 - Numery.txt"));
+            int nextPointerPosition;
+            System.out.println("przecinek jest na pozycji :" + pointerPosition);
+        }
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-        StringBuilder sb = new StringBuilder();
-        String path = "D:\\Java\\Projekty\\UseFullInWork\\Test.txt";
-        Scanner scanner = null;
+        var wr = new WriteToFile();
         try {
-            scanner = new Scanner(Path.of("D:\\Java\\Projekty\\UseFullInWork\\Test.txt"));
+            wr.saveInFile(Path.of("D:\\Java\\Projekty\\UseFullInWork"),Arrays.toString(linie));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        sb.append(scanner.next());
-        sb.append(scanner.nextLine());
-        sb.append(scanner.nextLine());
-        sb.append(scanner.nextLine());
-        sb.append(scanner.nextLine());
-        sb.append(scanner.nextLine());
-        System.out.println(sb.toString());
+
+/*
+
+        String[] test = {"je", "6ea", "bea", "i","8432"};
+        Arrays.sort(test,(o1, o2) -> o1.length()-o2.length());
+        System.out.println(Arrays.toString(test));
+        Scanner scanner = new Scanner(System.in);
+        System.currentTimeMillis();
+        System.out.println("Jest godzina" + Instant.ofEpochMilli(System.currentTimeMillis()));
+
+
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("Test.txt"));
+            bufferedReader.readLine();
+            bufferedReader.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException ex){
+            ex.printStackTrace();
+        }
+*/
 
     }
 }
