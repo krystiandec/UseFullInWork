@@ -30,6 +30,8 @@ public class Application {
         System.out.println(set1);
         for (String s : tab2) {
             System.out.print(s + "|");
+
+            
         }
     }
 }

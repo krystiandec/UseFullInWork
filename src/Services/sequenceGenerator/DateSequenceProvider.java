@@ -16,7 +16,7 @@ public class DateSequenceProvider implements SequenceProvider {
         StringBuilder stringBuilder = new StringBuilder();
         setDateFormat();
         stringBuilder.append(dateFormat.format(new Date()));
-        stringBuilder.append(" - ");
+        stringBuilder.append("_");
         return stringBuilder.toString();
     }
 }

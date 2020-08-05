@@ -6,9 +6,16 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.*;
 
+
 public class Temp {
+
+    public static void tokenReader(Scanner in){
+        String line = in.nextLine();
+
+    }
+
     public static void main(String[] args) {
-        String[] linie = {"419171003C2,419170200,02Y0039,419380400,419380200,419540000,419380300,419380100,419170100",
+/*        String[] linie = {"419171003C2,419170200,02Y0039,419380400,419380200,419540000,419380300,419380100,419170100",
                 "419171032C2,419170001C1",
                 "419171104,419170200,419380400,419540000,419170100"};
         Map<String, Set<String>> map2 = new HashMap<>();
@@ -17,14 +24,15 @@ public class Temp {
 
             int nextPointerPosition;
             System.out.println("przecinek jest na pozycji :" + pointerPosition);
-        }
+        }*/
+        var wtf = new WriteToFile();
+        wtf.reformatDocToTokenSeparators(Path.of("D:\\Java\\Projekty\\UseFullInWork\\Test.txt"));
 
-        var wr = new WriteToFile();
-        try {
-            wr.saveInFile(Path.of("D:\\Java\\Projekty\\UseFullInWork"),Arrays.toString(linie));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Exception exception = new IOException("coś tam");
+        List<String> list = new ArrayList<>();
+
+
+
 
 /*
 
