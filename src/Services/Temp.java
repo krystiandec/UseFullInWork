@@ -2,17 +2,9 @@ package Services;
 
 import Services.fileService.WriteToFile;
 
-import java.io.IOException;
 import java.nio.file.Path;
-import java.util.*;
-
 
 public class Temp {
-
-    public static void tokenReader(Scanner in){
-        String line = in.nextLine();
-
-    }
 
     public static void main(String[] args) {
 /*        String[] linie = {"419171003C2,419170200,02Y0039,419380400,419380200,419540000,419380300,419380100,419170100",
@@ -25,13 +17,9 @@ public class Temp {
             int nextPointerPosition;
             System.out.println("przecinek jest na pozycji :" + pointerPosition);
         }*/
+
         var wtf = new WriteToFile();
-        wtf.reformatDocToTokenSeparators(Path.of("D:\\Java\\Projekty\\UseFullInWork\\Test.txt"));
-
-        Exception exception = new IOException("coś tam");
-        List<String> list = new ArrayList<>();
-
-
+        wtf.takePastedDataFromExcelCellToTXT(Path.of("D:\\Java\\Projekty\\UseFullInWork\\Test.txt"));
 
 
 /*

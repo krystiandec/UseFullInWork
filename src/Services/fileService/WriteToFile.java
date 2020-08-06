@@ -8,23 +8,21 @@ import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class WriteToFile {
 
     private String patchToFile;
     private SequenceProvider sequenceProvider;
 
+    /*Settery*/
     private void setSequenceProvider() {
         this.sequenceProvider = new DateSequenceProvider();
     }
 
     private void setPatchToFile(Path path) throws IOException {
         setSequenceProvider();
-        if (path.toString() == "" || path == null) {
+        if (path.toString().equals("")) {
             throw new IOException("Sciezka nie moze byc pusta !! ");
         } else {
             StringBuilder sb = new StringBuilder(path.toString());
@@ -33,10 +31,11 @@ public class WriteToFile {
         }
     }
 
+    /*Metody*/
+
     /**
      * nowy kod implementacja
      */
-
     public Map<String, Set<String>> takeAndSortDataFromTokenFile(Path path) {
         Map<String, Set<String>> map = new HashMap<>();
 
@@ -53,28 +52,28 @@ public class WriteToFile {
         return map;
     }
 
+    public void takePastedDataFromExcelCellToTXT(Path path) {
+        transformTabsToToken(path);
+        createFromSharpArrayOnSquareArrayNullFill(path);
 
-    public void reformatDocToTokenSeparators(Path path) {
+    }
+
+    private void transformTabsToToken(Path path) {
         StringBuilder sb = new StringBuilder();
         int columnCount;
         try {
             Scanner scanner = new Scanner(path);
             while (scanner.hasNextLine()) {
-                sb.append(removeTabsAndSeparateThem(scanner.nextLine()));
+                sb.append(transformTabsToTokenSingleRow(scanner.nextLine()));
                 sb.append("\n");
             }
             saveInFile(path, sb.toString(), false);
-            System.out.println(scanner.hasNextLine());
-            scanner = new Scanner(path);
-            System.out.println(scanner.hasNextLine());
-            columnCount = columnCounter(scanner.nextLine());
-            System.out.println(columnCount);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private String removeTabsAndSeparateThem(String s) {
+    private String transformTabsToTokenSingleRow(String s) {
         StringBuilder sb = new StringBuilder(s);
         char tab = '\t';
         while (sb.toString().indexOf(tab) != -1) {
@@ -84,27 +83,60 @@ public class WriteToFile {
         return sb.toString();
     }
 
-    private int columnCounter(String s) {
-        int counter=0;
-        int index;
-        StringBuilder sb = new StringBuilder(s);
-        while (sb.toString().indexOf('|') != -1) {
-            index = sb.toString().indexOf('|');
-            sb.deleteCharAt(index);
-            counter++;
+    private void createFromSharpArrayOnSquareArrayNullFill(Path path) {
+        int sizeOfArray;
+        try {
+            Scanner scanner = new Scanner(path);
+            sizeOfArray = columnCounter(path);
+            while (scanner.hasNextLine()) {
+                formatedSharpArrrayFillToSquareArr(scanner.nextLine(), sizeOfArray);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(getClass());
         }
-        if (counter!=0) counter+=1;
+    }
+
+    private int columnCounter(Path path) {
+        int counter = 0;
+        int index;
+        StringBuilder sb = new StringBuilder();
+        try {
+            Scanner scanner = new Scanner(path);
+            sb.append(scanner.nextLine());
+            while (sb.toString().indexOf('|') != -1) {
+                index = sb.toString().indexOf('|');
+                sb.deleteCharAt(index);
+                counter++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (counter != 0) counter += 1;
         return counter;
     }
 
-    private void createFromSharpArrayOnSquareNullFill(){
 
+    private String formatedSharpArrrayFillToSquareArr(String line, int sizeOfArray) {
+        StringBuilder sb = new StringBuilder(line);
+        char separator = '|';
+        List<Integer> whereIsTokenSep = new ArrayList<>();
+        for (int i = 0; i < line.length(); i++)
+            if (line.charAt(i) == separator) {
+                whereIsTokenSep.add(i);
+            }
+        for (int i=0; i < whereIsTokenSep.size(); i++) {
+
+        }
+
+        return null;
     }
 
     /**
      * nowy kod implementacja koniec
      */
-
     public void saveInFile(Path path, String txt, boolean createUniqueSerialNo) throws IOException {
         File file = null;
         if (createUniqueSerialNo) {
@@ -115,17 +147,10 @@ public class WriteToFile {
             file = new File(path.toString());
             System.out.println("Plik nadpisano w: " + path.toString());
         }
-        BufferedWriter bufferedWriter = null;
-        FileWriter fileWriter = null;
-        try {
-            fileWriter = new FileWriter(file, false);
-            bufferedWriter = new BufferedWriter(fileWriter);
+        try (FileWriter fileWriter = new FileWriter(file, false); BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
             bufferedWriter.write(txt);
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            bufferedWriter.close();
-            fileWriter.close();
         }
     }
 
