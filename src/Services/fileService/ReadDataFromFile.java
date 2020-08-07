@@ -2,9 +2,9 @@ package Services.fileService;
 
 import java.io.*;
 import java.nio.file.Path;
-import java.util.Scanner;
+import java.util.*;
 
-public class ReadDataFromFileImpl {
+public class ReadDataFromFile {
 
     public String readValuersFromFileReadLineByLine(Path path) {
         StringBuilder sb = new StringBuilder();
@@ -20,6 +20,23 @@ public class ReadDataFromFileImpl {
             System.out.println(getClass());
         }
         return sb.toString();
+    }
+
+    public Map<String, Set<String>> takeDataFromFileWhereIsChippedTableVertical(Path path) {
+        List<String> keyList = new ArrayList<>();
+        Map<String, Set<String>> map = new HashMap<>();
+        String line;
+        try {
+            Scanner scanner = new Scanner(path);
+            while (scanner.hasNextLine()) {
+                line = scanner.nextLine();
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(getClass());
+        }
+        return map;
     }
 
 
