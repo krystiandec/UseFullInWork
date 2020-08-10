@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static Services.fileService.Counters.columnCounter;
+
 public class ChippedTableVerticalToSquareMatrixFormat {
 
     WriteToFile writeToFile = new WriteToFile();
@@ -15,7 +17,7 @@ public class ChippedTableVerticalToSquareMatrixFormat {
         createFromSharpArrayOnSquareArrayNullFill(path);
     }
 
-    private void transformTabsToToken(Path path) {
+    public void transformTabsToToken(Path path) {
         StringBuilder sb = new StringBuilder();
         try {
             Scanner scanner = new Scanner(path);
@@ -94,18 +96,7 @@ public class ChippedTableVerticalToSquareMatrixFormat {
         return sb.toString();
     }
 
-    private int columnCounter(String s) {
-        int counter = 0;
-        int index;
-        StringBuilder sb = new StringBuilder(s);
-        while (sb.toString().indexOf('|') != -1) {
-            index = sb.toString().indexOf('|');
-            sb.deleteCharAt(index);
-            counter++;
-            if (counter != 0) counter += 1;
-        }
-        return counter;
-    }
+
 
 
 }
