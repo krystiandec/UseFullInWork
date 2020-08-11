@@ -10,7 +10,7 @@ import static Services.fileService.Counters.columnCounter;
 
 public class ChippedTableVerticalToSquareMatrixFormat {
 
-    WriteToFile writeToFile = new WriteToFile();
+    private WriteToFile writeToFile = new WriteToFile();
 
     public void rebuildFileFromCippedTableVerticalToSquareMatrix(Path path) {
         transformTabsToToken(path);
@@ -92,11 +92,7 @@ public class ChippedTableVerticalToSquareMatrixFormat {
             sb.append("|null");
             realSize = columnCounter(sb.toString());
         }
-
         return sb.toString();
     }
-
-
-
 
 }

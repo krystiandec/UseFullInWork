@@ -25,7 +25,7 @@ public class ReadDataFromFile {
         return sb.toString();
     }
 
-    public Map<String, List<String>> takeDataFromFileWhereIsChippedTableVertical(Path path) {
+    public Map<String, List<String>> takeDataFromFileAndCreateMap(Path path) {
         List<String> keyList = new ArrayList<>();
         List<String> values = new ArrayList<>();
         Map<String, List<String>> map = new TreeMap<>();
@@ -44,13 +44,11 @@ public class ReadDataFromFile {
                     keyList.add(line.substring(positions.get(i - 1) + 1, positions.get(i)));
                 }
             }
-            line = scanner.nextLine();
             for (String s : keyList) {
-                map.put(s,new ArrayList<>());
+                map.put(s, new ArrayList<>());
             }
-            //mam już klucze tutaj.
+            line = scanner.nextLine();
             while (scanner.hasNextLine()) {
-                positions = positionOfSeparators(line);
                 for (int i = 0; i <= positions.size(); i++) {
                     if (i == 0) {
                         map.get(keyList.get(i)).add(line.substring(i, positions.get(i)));
@@ -63,13 +61,10 @@ public class ReadDataFromFile {
                 values.clear();
                 line = scanner.nextLine();
             }
-
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println(getClass());
         }
         return map;
     }
-
-
 }

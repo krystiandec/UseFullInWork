@@ -1,11 +1,8 @@
 package Services;
 
 import Services.fileService.ChippedTableVerticalToSquareMatrixFormat;
-import Services.fileService.Counters;
 import Services.fileService.ReadDataFromFile;
-import Services.fileService.WriteToFile;
 
-import java.io.IOException;
 import java.nio.file.Path;
 
 public class Temp {
@@ -22,6 +19,6 @@ public class Temp {
                 readValuersFromFileReadLineByLine(path);
         System.out.println(string);
 
-        readFromFIle.takeDataFromFileWhereIsChippedTableVertical(path);
+        readFromFIle.takeDataFromFileAndCreateMap(path);
     }
 }
