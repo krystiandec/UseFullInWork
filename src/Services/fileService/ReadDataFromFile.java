@@ -4,8 +4,7 @@ import java.io.*;
 import java.nio.file.Path;
 import java.util.*;
 
-import static Services.fileService.Counters.columnCounter;
-import static Services.fileService.Counters.positionOfSeparators;
+import static Services.fileService.domain.Counters.positionOfSeparators;
 
 public class ReadDataFromFile {
 
@@ -27,7 +26,6 @@ public class ReadDataFromFile {
 
     public Map<String, List<String>> takeDataFromFileAndCreateMap(Path path) {
         List<String> keyList = new ArrayList<>();
-        List<String> values = new ArrayList<>();
         Map<String, List<String>> map = new TreeMap<>();
         String line;
         List<Integer> positions;
@@ -58,7 +56,6 @@ public class ReadDataFromFile {
                         map.get(keyList.get(i)).add(line.substring(positions.get(i - 1) + 1, positions.get(i)));
                     }
                 }
-                values.clear();
                 line = scanner.nextLine();
             }
         } catch (IOException e) {

@@ -1,4 +1,4 @@
-package Services.fileService;
+package Services.fileService.domain;
 
 import java.util.ArrayList;
 import java.util.List;

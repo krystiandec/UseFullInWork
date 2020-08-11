@@ -1,4 +1,6 @@
-package Services.fileService;
+package Services.fileService.domain.services;
+
+import Services.fileService.WriteToFile;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -6,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static Services.fileService.Counters.columnCounter;
+import static Services.fileService.domain.Counters.columnCounter;
 
 public class ChippedTableVerticalToSquareMatrixFormat {
 
