@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static Services.fileService.domain.Counters.columnCounter;
+import static Services.fileService.domain.services.Counters.columnCounter;
 
 public class ChippedTableVerticalToSquareMatrixFormat {
 
