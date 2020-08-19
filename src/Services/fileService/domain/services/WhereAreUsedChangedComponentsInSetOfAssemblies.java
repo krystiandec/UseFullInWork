@@ -11,7 +11,6 @@ import static Services.fileService.domain.services.Counters.positionOfSeparators
 
 public class WhereAreUsedChangedComponentsInSetOfAssemblies {
 
-
     public void createTableOfUsagesValuesAsSetOfUnique(Path path) {
         Map<String, List<String>> map = takeDataFromFileAndCreateMap(path);
         Set<String> uniqueValues = new TreeSet<>();
@@ -40,7 +39,6 @@ public class WhereAreUsedChangedComponentsInSetOfAssemblies {
             System.out.println("");
         }
     }
-
 
     private Map<String, List<String>> takeDataFromFileAndCreateMap(Path path) {
         List<String> keyList = new ArrayList<>();

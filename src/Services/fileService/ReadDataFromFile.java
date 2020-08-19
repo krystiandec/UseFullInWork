@@ -12,6 +12,7 @@ public class ReadDataFromFile {
         StringBuilder sb = new StringBuilder();
         try {
             Scanner scanner = new Scanner(path);
+            scanner.tokens();
             while (scanner.hasNextLine()) {
                 sb.append(scanner.nextLine() + "\n");
             }

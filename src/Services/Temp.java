@@ -4,19 +4,19 @@ import Services.fileService.domain.services.ChippedTableVerticalToSquareMatrixFo
 import Services.fileService.ReadDataFromFile;
 import Services.fileService.domain.services.WhereAreUsedChangedComponentsInSetOfAssemblies;
 
-import java.awt.*;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Temp {
 
     public static void main(String[] args) {
 
 
-        Path path = Path.of("D:\\Java\\Projekty\\UseFullInWork\\Test.txt");
+/*        Path path = Path.of("D:\\Java\\Projekty\\UseFullInWork\\Test.txt");
 
         var chippedTable = new ChippedTableVerticalToSquareMatrixFormat();
         chippedTable.rebuildFileFromCippedTableVerticalToSquareMatrix(path);
@@ -27,7 +27,63 @@ public class Temp {
         usages.createTableOfUsagesValuesAsSetOfUnique(path);
         System.out.println();
 
-/*        List<Integer> numbers = Arrays.asList(6, 5, 3, 47, 5, 3, 2, 1);
+        try {
+            FileReader fr = new FileReader(path.toFile());
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }*/
+
+        /*var list = new LinkedList<String>();
+        list.add("Kamil");
+        list.add("Jurek");
+        list.add("Daniel");
+        System.out.println(list.listIterator(2));
+        Iterator<String> iterator = list.iterator();
+        iterator.next();
+        iterator.next();
+        iterator.remove();
+        list.forEach(e-> System.out.println(e));*/
+
+/*
+        var a = new LinkedList<String>();
+        a.add("Ania");
+        a.add("Karol");
+        a.add("Eryk");
+        var b = new LinkedList<String>();
+        b.add("Bartek");
+        b.add("Daniel");
+        b.add("Franek");
+        b.add("Gosia");
+        System.out.println(a);
+        System.out.println(b);
+// Scalenie list a i b
+        ListIterator<String> aIter = a.listIterator();
+        Iterator<String> bIter = b.iterator();
+        while (bIter.hasNext())
+        {
+            if (aIter.hasNext()) aIter.next();
+            aIter.add(bIter.next());
+        }
+        System.out.println(a);
+// Usunięcie co drugiego słowa z listy b
+        bIter = b.iterator();
+        while (bIter.hasNext())
+        {
+            bIter.next(); // Opuszczenie jednego elementu
+            if (bIter.hasNext())
+            {
+                bIter.next(); // Opuszczenie następnego elementu
+                bIter.remove(); // Usunięcie elementu
+            }
+        }
+        System.out.println(b);
+// Usunięcie wszystkich słów znajdujących się w liście b z listy a
+        a.removeAll(b);
+        System.out.println(a);
+*/
+
+        /*        List<Integer> numbers = Arrays.asList(6, 5, 3, 47, 5, 3, 2, 1);
         int sum = numbers.stream()
                 .filter(x -> x % 2 == 0)
                 .map(x -> x * x)
@@ -38,20 +94,5 @@ public class Temp {
         System.out.println(sum);
         System.out.println(sdsa);*/
 
-
-        /*double oprDo10_000 = 0.002/12; // w skali mc
-        double oprPow10_000 = 0.001/12; // w skali roku
-
-        double zysk = 0;
-        double stosunekZysku = 0;
-
-        for (double d=9000.00;d<=10_800;d+=100){
-            if (d-10_000<=0){
-                zysk = d*oprDo10_000;
-            }else {
-                zysk = d*oprDo10_000 + (d-10_000)*oprPow10_000;
-            }
-            stosunekZysku = (d+zysk)/d;
-            System.out.printf("dla kwory = %.0f \tZysk wyniusł=%.4f \tStosunek zysku do kapitału: %.8f \n",d,zysk,stosunekZysku);*/
     }
 }

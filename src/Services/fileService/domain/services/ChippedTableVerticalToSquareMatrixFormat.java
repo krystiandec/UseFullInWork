@@ -42,6 +42,9 @@ public class ChippedTableVerticalToSquareMatrixFormat {
             sb.replace(index, index + 1, "|");
         }
         return sb.toString();
+
+
+
     }
 
     private String createFromSharpArrayOnSquareArrayNullFill(Path path) {
@@ -96,5 +99,6 @@ public class ChippedTableVerticalToSquareMatrixFormat {
         }
         return sb.toString();
     }
+
 
 }

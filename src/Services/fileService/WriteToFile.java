@@ -47,5 +47,4 @@ public class WriteToFile {
             e.printStackTrace();
         }
     }
-
 }
