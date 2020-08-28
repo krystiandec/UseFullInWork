@@ -4,16 +4,40 @@ import Services.fileService.domain.services.ChippedTableVerticalToSquareMatrixFo
 import Services.fileService.ReadDataFromFile;
 import Services.fileService.domain.services.WhereAreUsedChangedComponentsInSetOfAssemblies;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Temp {
 
     public static void main(String[] args) {
+
+        List<String> list = new LinkedList<>();
+        List<String> list1 = new ArrayList<>();
+        list.add("dsadsad");
+        list.add("dfa");
+        list.add("gtrhg");
+        list.add("ktfyf");
+        list.add("eryr");
+        Collections.unmodifiableList(list);
+//        list1 = Collections.checkedList(list,String.class);
+
+        try {
+            String string = new String(Files.readAllBytes(Path.of("D:\\Java\\Projekty\\UseFullInWork\\alice_in_wonderland.txt")));
+            List<String> counter = Arrays.asList(string.split("\\PL+"));
+            long words = counter.stream().filter(w->w.length()>6 && w.length()<12).count();
+            System.out.println("Words each length is grater than 12: " + words);
+        } catch (IOException e) {
+            System.out.println("File do not exist");
+            e.printStackTrace();
+        }
+
+        Arrays.stream(list.toArray(),3,5).forEach(e-> list1.add(e+"asa"));
+        list1.stream().forEach(e->System.out.println(e));
+        Stream<String> song = Stream.of("lalalalalala","lololo","hohoohoh","trolololololo","hehehe");
+        
 
 
 /*        Path path = Path.of("D:\\Java\\Projekty\\UseFullInWork\\Test.txt");
