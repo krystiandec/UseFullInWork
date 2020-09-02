@@ -37,7 +37,7 @@ public class Temp {
         Arrays.stream(list.toArray(),3,5).forEach(e-> list1.add(e+"asa"));
         list1.stream().forEach(e->System.out.println(e));
         Stream<String> song = Stream.of("lalalalalala","lololo","hohoohoh","trolololololo","hehehe");
-        
+
 
 
 /*        Path path = Path.of("D:\\Java\\Projekty\\UseFullInWork\\Test.txt");

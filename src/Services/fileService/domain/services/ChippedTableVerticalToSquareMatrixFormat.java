@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 import static Services.fileService.domain.services.Counters.columnCounter;
 
@@ -42,8 +43,6 @@ public class ChippedTableVerticalToSquareMatrixFormat {
             sb.replace(index, index + 1, "|");
         }
         return sb.toString();
-
-
 
     }
 
