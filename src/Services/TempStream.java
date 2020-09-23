@@ -1,9 +1,11 @@
 package Services;
 
 
+import org.jetbrains.annotations.Nullable;
+
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class TempStream {
@@ -21,6 +23,14 @@ public class TempStream {
         return null;
     }
 
+    /*private  static class InnerClass{
+        public <E> E lalala (Optional<E> optional){
+            List<E> lalaList = Collections.emptyList();
+            optional.ifPresent(e -> lalaList.add(e));
+            optional.ifPresent(e -> System.out.println(e));
+            return lalaList.get(0);
+        }
+    }*/
 
     public static void main(String[] args) {
         System.out.println(transformTabsToTokenStream(Path.of("alice_in_wonderland.txt")));

@@ -20,7 +20,7 @@ public class ChippedTableVerticalToSquareMatrixFormat {
         createFromSharpArrayOnSquareArrayNullFill(path);
     }
 
-    public void transformTabsToToken(Path path) {
+    private void transformTabsToToken(Path path) {
         StringBuilder sb = new StringBuilder();
         try {
             Scanner scanner = new Scanner(path);
@@ -98,6 +98,5 @@ public class ChippedTableVerticalToSquareMatrixFormat {
         }
         return sb.toString();
     }
-
 
 }

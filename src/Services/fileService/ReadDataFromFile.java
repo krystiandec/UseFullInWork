@@ -1,6 +1,7 @@
 package Services.fileService;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
@@ -23,5 +24,10 @@ public class ReadDataFromFile {
             System.out.println(getClass());
         }
         return sb.toString();
+    }
+    public String readLineByLineAppendStar(Path path) throws IOException{
+        String str = new String(Files.readAllBytes(path));
+        List<String> stringList = Arrays.asList(str.split("\\PL+"));
+        return null;
     }
 }

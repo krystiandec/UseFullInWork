@@ -41,7 +41,8 @@ public class WriteToFile {
             file = new File(path.toString());
             System.out.println("Plik nadpisano w: " + path.toString());
         }
-        try (FileWriter fileWriter = new FileWriter(file, false); BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+        try (FileWriter fileWriter = new FileWriter(file, false);
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
             bufferedWriter.write(txt);
         } catch (IOException e) {
             e.printStackTrace();
