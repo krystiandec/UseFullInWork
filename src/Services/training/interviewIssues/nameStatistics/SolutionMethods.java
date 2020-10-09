@@ -42,7 +42,7 @@ public class SolutionMethods {
     }
 
     public void display10MostPopularChildNames() {
-        Map<Integer, List<String>> map = countOfRepeatOfTheName();
+        Map<Integer, List<String>> map = countOfRepeatOfTheName(mapOfNamesAndCountOfTimes());
         int top = map.keySet().stream().max(Comparator.naturalOrder()).get();
         int counter = 0;
         int position = 1;
@@ -57,12 +57,27 @@ public class SolutionMethods {
                 }
             }
         }
-
-
+    }
+    public void display10MostPopularChildNames(Gender gender) {
+        Map<Integer, List<String>> map = countOfRepeatOfTheName(mapOfNamesAndCountOfTimes(gender));
+        int top = map.keySet().stream().max(Comparator.naturalOrder()).get();
+        int counter = 0;
+        int position = 1;
+        for (int i = top; i >= 1; i--) {
+            if (map.keySet().contains(i)) {
+                System.out.print(position + ".\tcounts: " + i + "->");
+                position++;
+                counter = counter + map.get(i).size();
+                System.out.println(map.get(i).toString());
+                if (counter >= 10) {
+                    break;
+                }
+            }
+        }
     }
 
-    private Map<Integer, List<String>> countOfRepeatOfTheName() {
-        Map<String, Integer> tempList = mapOfNamesAndCountOfTimes();
+    private Map<Integer, List<String>> countOfRepeatOfTheName(Map<String, Integer> incomeMap) {
+        Map<String, Integer> tempList = incomeMap;
         Map<Integer, List<String>> integerListMap = new HashMap<>();
 
         for (String name : tempList.keySet()) {
@@ -88,6 +103,20 @@ public class SolutionMethods {
                 nameAndCountOfTimes.put(child.getName(), counter);
             }
             nameAndCountOfTimes.putIfAbsent(child.getName(), 1);
+        }
+        return nameAndCountOfTimes;
+    }
+    private Map<String, Integer> mapOfNamesAndCountOfTimes(Gender gander) {
+        Map<String, Integer> nameAndCountOfTimes = new HashMap<>();
+        for (Child child : this.listOfChild) {
+            if (child.getGender().equals(gander) &&
+                    nameAndCountOfTimes.keySet().contains(child.getName())){
+                int counter = nameAndCountOfTimes.get(child.getName()).intValue();
+                counter++;
+                nameAndCountOfTimes.put(child.getName(), counter);
+            }else if (child.getGender().equals(gander)) {
+                nameAndCountOfTimes.putIfAbsent(child.getName(), 1);
+            }
         }
         return nameAndCountOfTimes;
     }
