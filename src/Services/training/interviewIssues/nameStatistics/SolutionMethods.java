@@ -44,12 +44,20 @@ public class SolutionMethods {
     public void display10MostPopularChildNames() {
         Map<Integer, List<String>> map = countOfRepeatOfTheName();
         int top = map.keySet().stream().max(Comparator.naturalOrder()).get();
-        for (int i = top; i == 1; i--) {
+        int counter = 0;
+        int position = 1;
+        for (int i = top; i >= 1; i--) {
             if (map.keySet().contains(i)) {
-                System.out.print(i +"\t");
+                System.out.print(position + ".\tcounts: " + i + "->");
+                position++;
+                counter = counter + map.get(i).size();
                 System.out.println(map.get(i).toString());
+                if (counter >= 10) {
+                    break;
+                }
             }
         }
+
 
     }
 
