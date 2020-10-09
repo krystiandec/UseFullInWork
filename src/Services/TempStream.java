@@ -33,8 +33,15 @@ public class TempStream {
     }*/
 
     public static void main(String[] args) {
-        System.out.println(transformTabsToTokenStream(Path.of("alice_in_wonderland.txt")));
-        System.out.println("*");
-
+        String fizz="Fizz";
+        String buzz="Buzz";
+        List<Integer> array = new ArrayList<>();
+        for (int i = 0; i <= 150; i++) {
+            array.add(i);
+        }
+        array.stream()
+                .map(e -> String.valueOf(e) + "." + (e % 3 == 0 ? fizz : "") + (e % 5 == 0 ? buzz : ""))
+                .filter(e -> e.contains(fizz)||e.contains(buzz))
+                .forEach(System.out::println);
     }
 }
