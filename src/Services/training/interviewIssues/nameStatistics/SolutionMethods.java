@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.*;
 
-
 public class SolutionMethods {
     private List<Child> listOfChild = new ArrayList<>();
 
@@ -35,9 +34,9 @@ public class SolutionMethods {
     private Child readLineOfTokens(String line) {
         StringTokenizer token = new StringTokenizer(line, ",");
         int year = Integer.valueOf(token.nextToken());
-        String gender = token.nextToken();
-        String ethnicity = token.nextToken();
-        String name = token.nextToken();
+        String gender = token.nextToken().toUpperCase();
+        String ethnicity = token.nextToken().toUpperCase();
+        String name = token.nextToken().toUpperCase();
         return new Child(year, gender, ethnicity, name);
     }
 
@@ -58,6 +57,7 @@ public class SolutionMethods {
             }
         }
     }
+
     public void display10MostPopularChildNames(Gender gender) {
         Map<Integer, List<String>> map = countOfRepeatOfTheName(mapOfNamesAndCountOfTimes(gender));
         int top = map.keySet().stream().max(Comparator.naturalOrder()).get();
@@ -69,7 +69,7 @@ public class SolutionMethods {
                 position++;
                 counter = counter + map.get(i).size();
                 System.out.println(map.get(i).toString());
-                if (counter >= 10) {
+                if (counter >= 1) {
                     break;
                 }
             }
@@ -77,27 +77,23 @@ public class SolutionMethods {
     }
 
     private Map<Integer, List<String>> countOfRepeatOfTheName(Map<String, Integer> incomeMap) {
-        Map<String, Integer> tempList = incomeMap;
         Map<Integer, List<String>> integerListMap = new HashMap<>();
-
-        for (String name : tempList.keySet()) {
-            int i = tempList.get(name);
-            if (integerListMap.keySet().contains(i)) {
+        for (String name : incomeMap.keySet()) {
+            int i = incomeMap.get(name);
+            if (integerListMap.containsKey(i)) {
                 integerListMap.get(i).add(name);
             } else {
-                integerListMap.put(tempList.get(name), new ArrayList<>());
+                integerListMap.put(incomeMap.get(name), new ArrayList<>());
                 integerListMap.get(i).add(name);
             }
         }
-//        usunięcie unikatów
-        integerListMap.remove(1);
         return integerListMap;
     }
 
     private Map<String, Integer> mapOfNamesAndCountOfTimes() {
         Map<String, Integer> nameAndCountOfTimes = new HashMap<>();
         for (Child child : this.listOfChild) {
-            if (nameAndCountOfTimes.keySet().contains(child.getName())) {
+            if (nameAndCountOfTimes.containsKey(child.getName())) {
                 int counter = nameAndCountOfTimes.get(child.getName()).intValue();
                 counter++;
                 nameAndCountOfTimes.put(child.getName(), counter);
@@ -106,21 +102,64 @@ public class SolutionMethods {
         }
         return nameAndCountOfTimes;
     }
+
     private Map<String, Integer> mapOfNamesAndCountOfTimes(Gender gander) {
         Map<String, Integer> nameAndCountOfTimes = new HashMap<>();
         for (Child child : this.listOfChild) {
             if (child.getGender().equals(gander) &&
-                    nameAndCountOfTimes.keySet().contains(child.getName())){
+                    nameAndCountOfTimes.keySet().contains(child.getName())) {
                 int counter = nameAndCountOfTimes.get(child.getName()).intValue();
                 counter++;
                 nameAndCountOfTimes.put(child.getName(), counter);
-            }else if (child.getGender().equals(gander)) {
+            } else if (child.getGender().equals(gander)) {
                 nameAndCountOfTimes.putIfAbsent(child.getName(), 1);
             }
         }
         return nameAndCountOfTimes;
     }
 
+    public void theMostPopulatLetterName() {
+        Map<String, Integer> tempMap = mapOfNamesAndCountOfTimes();
+        Map<String, Integer> letterAndCountValue = new HashMap<>();
+        String firstLetterOfName;
+        for (String name : tempMap.keySet()) {
+            firstLetterOfName = name.substring(0, 1).toUpperCase();
+            if (letterAndCountValue.containsKey(firstLetterOfName)) {
+                int counter = tempMap.get(name);
+                counter += letterAndCountValue.get(firstLetterOfName);
+                letterAndCountValue.put(firstLetterOfName, counter);
+            } else {
+                letterAndCountValue.put(firstLetterOfName, tempMap.get(name));
+            }
+        }
+
+        for(String s :treeTopKeys(letterAndCountValue)){
+            System.out.print(s + " - występuje:  " + letterAndCountValue.get(s) +"\t");
+            System.out.println("Pojawia się w imionach:");
+            for (String name : tempMap.keySet()) {
+                firstLetterOfName = name.substring(0, 1).toUpperCase();
+                if (firstLetterOfName.equals(s)) {
+                    System.out.print("["+name+"],");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    private List<String> treeTopKeys(Map<String, Integer> incomeMap) {
+        List<String> treeTopValues = new ArrayList<>();
+        List<Integer> listOfValuesFromMap = new ArrayList<>();
+        incomeMap.values().stream().sorted((o1, o2) -> o2 - o1)
+                .forEach(integer -> listOfValuesFromMap.add(integer));
+        listOfValuesFromMap.removeIf(integer -> integer < listOfValuesFromMap.get(2));
+        for (String s : incomeMap.keySet()) {
+                if (incomeMap.get(s) >= listOfValuesFromMap.get(2)) {
+                    treeTopValues.add(s);
+                    if (treeTopValues.size()==3) break;
+            }
+        }
+        return treeTopValues;
+    }
 
     public SolutionMethods(Path patchToDataFile) {
         setListOfChild(patchToDataFile);
