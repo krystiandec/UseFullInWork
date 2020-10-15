@@ -11,7 +11,7 @@ public class TestClass {
         SolutionMethods methods = null;
         try {
             methods = new SolutionMethods(
-                    Path.of("src/Services/training/interviewIssues/nameStatistics/Popular_Baby_Names_test.csv"));
+                    Path.of("src/Services/training/interviewIssues/nameStatistics/Popular_Baby_Names.csv"));
         } catch (IOException e) {
             e.printStackTrace();
         }
