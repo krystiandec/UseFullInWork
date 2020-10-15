@@ -111,10 +111,10 @@ public class SolutionMethods {
         String firstLetterOfName;
         for (String name : tempMap.keySet()) {
             firstLetterOfName = name.substring(0, 1).toUpperCase();
-            letterAndCountValue.merge(firstLetterOfName,tempMap.get(name),Integer::sum);
+            letterAndCountValue.merge(firstLetterOfName, tempMap.get(name), Integer::sum);
         }
-
-        for (String s : mostPopularKeysInMap(letterAndCountValue,countOfTheMostPopulatLetters)) {
+        List<String> val = mostPopularKeysInMap(letterAndCountValue, countOfTheMostPopulatLetters);
+        for (String s : val) {
             System.out.print(s + " - występuje:  " + letterAndCountValue.get(s) + "\t");
             System.out.println("Pojawia się w imionach:");
             for (String name : tempMap.keySet()) {
@@ -127,19 +127,20 @@ public class SolutionMethods {
         }
     }
 
-    private List<String> mostPopularKeysInMap(Map<String, Integer> incomeMap,int count) {
-        List<String> treeTopValues = new ArrayList<>();
+    private List<String> mostPopularKeysInMap(Map<String, Integer> incomeMap, int count) {
+        List<String> topValues = new ArrayList<>();
         List<Integer> listOfValuesFromMap = new ArrayList<>();
         incomeMap.values().stream().sorted((o1, o2) -> o2 - o1)
                 .forEach(integer -> listOfValuesFromMap.add(integer));
-        listOfValuesFromMap.removeIf(integer -> integer < listOfValuesFromMap.get(2));
-        for (String s : incomeMap.keySet()) {
-            if (incomeMap.get(s) >= listOfValuesFromMap.get(2)) {
-                treeTopValues.add(s);
-                if (treeTopValues.size() == count) break;
+        listOfValuesFromMap.removeIf(integer -> integer < listOfValuesFromMap.get(count - 1));
+
+        for (int i : listOfValuesFromMap) {
+            for (String s : incomeMap.keySet()) {
+                if (i == incomeMap.get(s)) topValues.add(s);
             }
         }
-        return treeTopValues;
+
+        return topValues;
     }
 
     public SolutionMethods(Path patchToDataFile) throws IOException {

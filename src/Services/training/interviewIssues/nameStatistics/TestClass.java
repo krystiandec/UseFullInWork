@@ -9,6 +9,12 @@ public class TestClass {
     public static void main(String[] args) {
 
         SolutionMethods methods = null;
+        /*try {
+            methods = new SolutionMethods(
+                    Path.of("src/Services/training/interviewIssues/nameStatistics/Popular_Baby_Names_test.csv"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
         try {
             methods = new SolutionMethods(
                     Path.of("src/Services/training/interviewIssues/nameStatistics/Popular_Baby_Names.csv"));
