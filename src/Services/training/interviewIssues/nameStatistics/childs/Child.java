@@ -1,10 +1,11 @@
 package Services.training.interviewIssues.nameStatistics.childs;
 
 public class Child {
-    int yearOfBirth;
-    Gender gender;
-    String ethnicity;
-    String name;
+    private int yearOfBirth;
+    private Gender gender;
+    private String ethnicity;
+    private String name;
+    private Integer count;
 
     public int getYearOfBirth() {
         return yearOfBirth;
@@ -38,19 +39,28 @@ public class Child {
         this.name = name;
     }
 
-    private Gender genderHandler(String gender){
-        if(gender.toUpperCase().equals("FEMALE")){
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    private Gender genderHandler(String gender) {
+        if (gender.toUpperCase().equals("FEMALE")) {
             return Gender.FEMALE;
-        }else{
+        } else {
             return Gender.MALE;
         }
     }
 
-    public Child(int yearOfBirth, String gender, String ethnicity, String name) {
+    public Child(int yearOfBirth, String gender, String ethnicity, String name, Integer count) {
         this.yearOfBirth = yearOfBirth;
         this.gender = genderHandler(gender);
         this.ethnicity = ethnicity;
         this.name = name;
+        this.count = count;
     }
 
 }
