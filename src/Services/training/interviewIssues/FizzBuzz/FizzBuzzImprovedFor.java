@@ -30,13 +30,10 @@ public class FizzBuzzImprovedFor implements FizzBuzz{
                 int current = i.intValue();
                 if (current % 3 == 0 && current % 5 == 0) {
                     System.out.println(current + "-" + f + b);
-                    continue;
                 }else if(current%3==0){
                     System.out.println(current + "-" + f);
-                    continue;
                 }else if(current%5==0){
                     System.out.println(current + "-" + b);
-                    continue;
                 }
             }
         } else {

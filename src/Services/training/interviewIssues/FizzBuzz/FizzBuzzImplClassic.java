@@ -14,15 +14,12 @@ public class FizzBuzzImplClassic implements FizzBuzz {
                 if (i % 3 == 0 && i % 5 == 0) {
                     integerStringMap.put(i, f + b);
                     System.out.println(i + "-" + f + b);
-                    continue;
                 } else if (i % 3 == 0) {
                     integerStringMap.put(i, f);
                     System.out.println(i + "-" + f);
-                    continue;
                 } else if (i % 5 == 0) {
                     integerStringMap.put(i, b);
                     System.out.println(i + "-" + b);
-                    continue;
                 }
             }
         } else {
