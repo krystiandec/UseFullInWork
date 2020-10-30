@@ -12,14 +12,14 @@ public class Pairs {
         int minVal = eachSum.stream().min(Integer::compareTo).get();
         Set<List<Integer>> maxSet = new HashSet<>();
         Set<List<Integer>> minSet = new HashSet<>();
-        Map<Integer, List<Integer>> map = new HashMap<>();
+/*        Map<Integer, List<Integer>> map = new HashMap<>();
         map.computeIfAbsent(1, integer -> new ArrayList<>());
         map.computeIfPresent(1, (integer, integers) ->
                 {
                     integers.add(maxVal);
                     return integers;
                 }
-        );
+        );*/
         for (int i = 0; i < array.length - 1; i++) {
             if (array[i] + array[i + 1] >= maxVal) {
                 List<Integer> maxList = new ArrayList<>();
@@ -44,7 +44,7 @@ public class Pairs {
     }
 
     public static void main(String[] args) {
-        int[] income = {-5, 0, 10, -5, 0, 5, 5};
+        int[] income = {2, 0, 0, 2, 0, 1, -1, -0, 2};
         maxMinNextNumbers(income);
     }
 }
