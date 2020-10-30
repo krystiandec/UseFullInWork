@@ -1,45 +1,38 @@
 package Services.training.interviewIssues.FizzBuzz;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FizzBuzzImplClassic implements FizzBuzz {
-    private List<Integer> exampleList;
+    private Map<Integer, String> integerStringMap = new HashMap<>();
 
-    public void setExampleList(int from, int to) {
-        List<Integer> exampleList = new ArrayList<>();
+    public void setIntegerStringMap(int from, int to) {
+        String f = "Fizz";
+        String b = "Buzz";
         if (from < to) {
             for (int i = from; i <= to; i++) {
-                exampleList.add(i);
+                if (i % 3 == 0 && i % 5 == 0) {
+                    integerStringMap.put(i, f + b);
+                    System.out.println(i + "-" + f + b);
+                    continue;
+                } else if (i % 3 == 0) {
+                    integerStringMap.put(i, f);
+                    System.out.println(i + "-" + f);
+                    continue;
+                } else if (i % 5 == 0) {
+                    integerStringMap.put(i, b);
+                    System.out.println(i + "-" + b);
+                    continue;
+                }
             }
-            this.exampleList = exampleList;
         } else {
             System.out.println("niepoprawny zakres");
-            this.exampleList = null;
         }
     }
 
     @Override
     public void print(int from, int to) {
-        setExampleList(from, to);
-        String f = "Fizz";
-        String b = "Buzz";
-        if (this.exampleList != null) {
-            for (int i = 0; i < exampleList.size(); i++) {
-                int current = exampleList.get(i);
-                if (current % 3 == 0 && current % 5 == 0) {
-                    System.out.println(current + "-" + f + b);
-                    continue;
-                }else if(current%3==0){
-                    System.out.println(current + "-" + f);
-                    continue;
-                }else if(current%5==0){
-                    System.out.println(current + "-" + b);
-                    continue;
-                }
-            }
-        } else {
-            System.out.println("Popraw zakres");
-        }
+        setIntegerStringMap(from, to);
+
     }
 }
