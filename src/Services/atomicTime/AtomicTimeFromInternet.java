@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
-import java.time.OffsetDateTime;
+import java.sql.Time;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
@@ -30,17 +30,16 @@ public class AtomicTimeFromInternet {
                     break;
                 }
             }
-/*            TimeZone tz = TimeZone.getTimeZone("EST"); // or .getDefault()
-            int gmt = (tz.getRawOffset() + tz.getDSTSavings()) / 3600000;*/
+            TimeZone tz = TimeZone.getTimeZone("GMT+1"); // or .getDefault()
+            int gmt = (tz.getRawOffset() + tz.getDSTSavings()) / 3600000;
             GregorianCalendar calendar = new GregorianCalendar();
             String[] fields = atomicTime.split(" ");
 
             String[] time = fields[2].split(":");
-            calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time[0]));
+            calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time[0])+gmt);
             calendar.set(Calendar.MINUTE, Integer.parseInt(time[1]));
             calendar.set(Calendar.SECOND, Integer.parseInt(time[2]));
             return calendar;
-
         } catch (IOException e) {
             e.getMessage();
             throw e;
@@ -53,9 +52,9 @@ public class AtomicTimeFromInternet {
     public static void main(String[] args) {
         try {
             System.out.println(getAtomicTime().getTime());
-
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }
